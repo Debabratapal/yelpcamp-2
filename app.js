@@ -9,14 +9,16 @@ methodOverride = require("method-override"),
 Campground  = require("./models/campground"),
 Comment     = require("./models/comment"),
 User        = require("./models/user"),
-seedDB      = require("./seed");
+morgan      = require("morgan");
 
 
 var campgroundRoutes = require("./routes/campgrounds"),
     commentRoutes    = require("./routes/comments"),
     authRoutes       = require("./routes/auth");
 
+var port = process.env.PORT || 3000;
 
+app.use(morgan('dev'));
 mongoose.connect("mongodb://localhost/yelpcamp_v12");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended : true}));
@@ -52,6 +54,6 @@ app.use(authRoutes);
 
 
 
-app.listen(3000, "localhost", function(){
-    console.log("YelpCamp app is listening..");
+app.listen(port, "localhost", function(){
+    console.log(`Server is up at ${port}`);
 });
