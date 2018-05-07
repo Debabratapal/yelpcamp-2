@@ -19,7 +19,7 @@ var campgroundRoutes = require("./routes/campgrounds"),
 var port = process.env.PORT || 3000;
 
 app.use(morgan('dev'));
-mongoose.connect("mongodb://localhost/yelpcamp_v12");
+mongoose.connect(MONGODB_URI ||"mongodb://localhost/yelpcamp_v12");
 app.set("view engine", "ejs");
 app.use(bodyParser.urlencoded({extended : true}));
 app.use(express.static(__dirname + "/public"));
